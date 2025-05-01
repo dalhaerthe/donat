@@ -20,7 +20,7 @@
             android:layout_marginStart="61dp"
             android:layout_marginBottom="39dp"
             android:text="Lek"
-            app:layout_constraintBottom_toTopOf="@+id/donka"
+            app:layout_constraintBottom_toTopOf="@+id/donkabt"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
@@ -31,11 +31,11 @@
             android:layout_marginBottom="39dp"
             android:contentDescription="data na sztywno"
             android:text="Data"
-            app:layout_constraintBottom_toTopOf="@+id/donka"
+            app:layout_constraintBottom_toTopOf="@+id/donkabt"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
-            android:id="@+id/donka"
+            android:id="@+id/donkabt"
             android:layout_width="309dp"
             android:layout_height="76dp"
             android:text="Donacja"
@@ -53,17 +53,17 @@
             app:barrierDirection="top" />
 
         <EditText
-            android:id="@+id/donDate"
+            android:id="@+id/donDateEt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
             android:ems="10"
             android:inputType="date"
-            app:layout_constraintStart_toStartOf="@+id/editTextText"
-            app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+            app:layout_constraintStart_toStartOf="@+id/donDateLb"
+            app:layout_constraintTop_toBottomOf="@+id/donDateLb" />
 
-        <EditText
-            android:id="@+id/editTextText"
+        <TextView
+            android:id="@+id/donDateLb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="2dp"
@@ -71,11 +71,11 @@
             android:ems="10"
             android:inputType="text"
             android:text="data donacji:"
-            app:layout_constraintBottom_toTopOf="@+id/editTextText2"
-            app:layout_constraintEnd_toEndOf="@+id/editTextText2" />
+            app:layout_constraintBottom_toTopOf="@+id/nextDateLb"
+            app:layout_constraintEnd_toEndOf="@+id/nextDateLb" />
 
-        <EditText
-            android:id="@+id/editTextText2"
+        <TextView
+            android:id="@+id/nextDateLb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="177dp"
@@ -87,15 +87,16 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
-            android:id="@+id/editTextDate2"
+            android:id="@+id/nextDateEt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="42dp"
             android:layout_marginEnd="1dp"
             android:ems="10"
             android:inputType="date"
-            app:layout_constraintEnd_toEndOf="@+id/editTextText2"
-            app:layout_constraintTop_toTopOf="@+id/editTextText2" />
+            app:layout_constraintEnd_toEndOf="@+id/nextDateLb"
+            app:layout_constraintTop_toTopOf="@+id/nextDateLb" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
