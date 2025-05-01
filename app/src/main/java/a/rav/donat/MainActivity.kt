@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         //TODO
 
         val sharedPref = getPreferences(Context.MODE_PRIVATE)
-        val readDate = sharedPref.getString("data", "1999-01-01")
+        val readDate = sharedPref.getString("donDate", "1999-01-01")
 
 return LocalDate.parse(readDate)
 
@@ -73,7 +73,7 @@ return LocalDate.parse(readDate)
 
         val sharedPr = getPreferences(Context.MODE_PRIVATE) ?: return
         with(sharedPr.edit()) {
-            putString("donData", donDate.toString())
+            putString("donDate", donDate.toString())
             apply()
         }
 
