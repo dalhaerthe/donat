@@ -52,11 +52,12 @@
             android:layout_height="wrap_content"
             app:barrierDirection="top" />
 
-        <EditText
+        <TextView
             android:id="@+id/donDateEt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
+            android:layout_marginTop="12dp"
             android:ems="10"
             android:inputType="date"
             app:layout_constraintStart_toStartOf="@+id/donDateLb"
@@ -81,20 +82,25 @@
             android:layout_marginBottom="177dp"
             android:ems="10"
             android:inputType="text"
-            android:text="możliwość następnej"
+            android:text="następna:"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <EditText
+        <TextView
             android:id="@+id/nextDateEt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="123dp"
             android:layout_marginTop="42dp"
             android:layout_marginEnd="1dp"
+            android:layout_marginBottom="135dp"
             android:ems="10"
             android:inputType="date"
+            android:textColor="#660707"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/nextDateLb"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/nextDateLb" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
