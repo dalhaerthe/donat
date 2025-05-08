@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -33,10 +34,14 @@ class MainActivity : AppCompatActivity() {
         donDateEt = findViewById<EditText>(R.id.donDateEt)
         nextDateEt = findViewById<EditText>(R.id.nextDateEt)
         donBtn = findViewById<Button>(R.id.donkabt)
-var lekBtn=findViewById<Button>(R.id.lek)
-lekBtn.setOnClickListener() {
-    setLek()
-}
+        var noteBtn=findViewById<Button>(R.id.adnotationsBt)
+        noteBtn.setOnClickListener {
+            addNote()
+        }
+        var lekBtn = findViewById<Button>(R.id.lek)
+        lekBtn.setOnClickListener() {
+            setLek()
+        }
 
         refreshView()
         donBtn.setOnClickListener() {
@@ -55,20 +60,30 @@ lekBtn.setOnClickListener() {
 
     }
 
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun refreshView() {
         donDate = readDonDate()!!
-        nextDate=readNextDate()!!
+        nextDate = readNextDate()!!
+        lek = readLek()!!
         donDateEt.text = donDate.toString()
 
         nextDateEt.text = nextDate.toString()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun readLek(): LocalDate? {
+        val sharedPref = getPreferences(Context.MODE_PRIVATE)
+        val readDate = sharedPref.getString("lekDate", "1999-01-01")
+
+        return LocalDate.parse(readDate)
+
     }
 
     //odczyt daty donacji:
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun readDonDate(): LocalDate? {
-        //TODO
 
         val sharedPref = getPreferences(Context.MODE_PRIVATE)
         val readDate = sharedPref.getString("donDate", "1999-01-01")
@@ -79,7 +94,7 @@ lekBtn.setOnClickListener() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun readNextDate(): LocalDate? {
-        //TODO
+
 
         val sharedPref = getPreferences(Context.MODE_PRIVATE)
         val readDate = sharedPref.getString("nextDate", "1999-01-01")
@@ -100,12 +115,20 @@ lekBtn.setOnClickListener() {
     }
 
     private fun saveProps(): Boolean {
+        if (lek != null)
+            if (lek > nextDate)
+                nextDate = lek
+
+
         val sharedPr = getPreferences(MODE_PRIVATE) ?: return true
         with(sharedPr.edit()) {
             putString("donDate", donDate.toString())
             putString("nextDate", nextDate.toString())
+            if (lek != null)
+                putString("lekDate", lek.toString())
 
             apply()
+            Log.d("aaa", lek.toString())
         }
         return false
     }
@@ -113,13 +136,33 @@ lekBtn.setOnClickListener() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun setLek() {
-        lek = LocalDate.now().plusDays(14).plusDays(50)
-Log.d("aaa",lek.toString())
-        if (lek > nextDate)
-            nextDate = lek
-        Log.d("aaa",(ChronoUnit.DAYS.between(lek, nextDate).toString()))
+        lek = LocalDate.now().plusDays(14)
+        Log.d("aaa", lek.toString())
+        Log.d("aaa", (ChronoUnit.DAYS.between(lek, nextDate).toString()))
         saveProps()
         refreshView()
+    }
+
+}
+
+
+
+private fun MainActivity.addNote() {
+    //dodaje notkę o ważnych wydarzeniach, jak zabiegi od ostatniego razu
+    val inflater=layoutInflater
+    val  noteDlg= AlertDialog.Builder(this)
+    //val  saveNote= DialogInterface.OnClickListener({ Log.d("aaa","bbb")})
+    fun saveNote(x: String){
+        //TODO  zapis
+    }
+    with (noteDlg) {
+        setTitle("pytacz")
+setMessage("daj")
+        val dlgLayout=inflater.inflate(R.layout.notedialog,null)
+        setView(dlgLayout)
+        val inputTxt=dlgLayout.findViewById<EditText>(R.id.noteEt)
+        setPositiveButton("OK") { dialogInterface,x->saveNote(inputTxt.text.toString()) }
+        show()
     }
 
 }
