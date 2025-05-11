@@ -106,7 +106,7 @@
             app:layout_constraintTop_toTopOf="@+id/nextDateLb" />
 
         <Button
-            android:id="@+id/adnotationsBt"
+            android:id="@+id/noteBt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="19dp"
@@ -117,6 +117,19 @@
             app:layout_constraintEnd_toStartOf="@+id/dat"
             app:layout_constraintStart_toEndOf="@+id/lek"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/noteInp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="176dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="177dp"
+            android:layout_marginBottom="55dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nextDateEt" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
